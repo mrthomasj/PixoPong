@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &31367739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1393,10 +1393,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 49840fce4a6dad544b1ee7514bd12fe5, type: 3}
-    m_FontSize: 200
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1699,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8632937685327246694, guid: 668089699b42a6d4ab26f6e3590b918f, type: 3}
       propertyPath: _ySpeed
-      value: 28
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 8938225591881818309, guid: 668089699b42a6d4ab26f6e3590b918f, type: 3}
       propertyPath: m_TagString

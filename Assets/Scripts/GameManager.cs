@@ -43,6 +43,16 @@ public class GameManager : MonoBehaviour
         CheckScore();
     }
 
+    public void DestroySound()
+    {
+        var sound = GameObject.Find("Sound");
+        if (!sound.GetComponent<AudioSource>().isPlaying)
+        {
+            Destroy(sound);
+        }
+        
+    }
+
     private void CheckScore()
     {
         if (_justScored)
@@ -146,7 +156,7 @@ public class GameManager : MonoBehaviour
 
         _player1.localPosition = new Vector3(-62f, 0, 0);
         _player2.localPosition = new Vector3(62f, 0, 0);
-        _ball.localPosition = Vector3.zero;
+        _ball.localPosition = new Vector3(0, Random.Range(-20f, 20f), 0);
 
         Countdown();
     }

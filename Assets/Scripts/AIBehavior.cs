@@ -38,7 +38,7 @@ public class AIBehavior : MonoBehaviour
 
         float direction = GetYPosition();
 
-        direction = Mathf.Clamp(direction, -31.5f, 31.5f);
+        direction = Mathf.Clamp(direction, -32f, 32f);
 
         moveAmount = new Vector3(transform.localPosition.x, direction, 0);
 
@@ -78,6 +78,6 @@ public class AIBehavior : MonoBehaviour
     private float GetRandomOffset()
     {
         float maxOffset = bc.bounds.extents.y;
-        return Random.Range(-maxOffset, maxOffset);
+        return Random.Range(-maxOffset-.5f, maxOffset+.5f);
     }
 }

@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour
     public void LaunchBall()
     {
 
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(0, Random.Range(-20f, 20f), 0);
 
         _xDirection = Random.Range(-1, 2);
         if (_xDirection == 0)
@@ -44,22 +44,14 @@ public class Ball : MonoBehaviour
         if (_yDirection == 0)
             _yDirection = -1;
 
-        moveAmount = new Vector3(.35f * _xSpeed * _xDirection, .65f * _ySpeed * _yDirection, 0);
+        moveAmount = new Vector3(.45f * _xSpeed * _xDirection, .55f * _ySpeed * _yDirection, 0);
     }
 
     private void MoveBall()
     {
-        //moveAmount = new Vector3(5f * _xSpeed * _xDirection, 3.5f * _ySpeed * _yDirection, 0);
-        //Debug.Log(moveAmount);
         transform.localPosition += moveAmount * Time.deltaTime;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (WallCollision(collision))
-    //        return;
-       
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -75,19 +67,23 @@ public class Ball : MonoBehaviour
     {
         if(collision.tag == "P1Goal")
         {
+            SoundManager.PlaySound(SoundManager.Sound.Goal);
             Debug.Log("Player Two Scores!");
             gameManager.playerTwoScore++;
             Debug.Log(gameManager.playerTwoScore);
             gameManager.SetScoreUI(2);
             gameManager._justScored = true;
+            gameManager.DestroySound();
         }
         if(collision.tag == "P2Goal")
         {
+            SoundManager.PlaySound(SoundManager.Sound.Goal);
             Debug.Log("Player One Scores!");
             gameManager.playerOneScore++;
             Debug.Log(gameManager.playerOneScore);
             gameManager.SetScoreUI(1);
             gameManager._justScored = true;
+            gameManager.DestroySound();
         }
 
     }
@@ -100,20 +96,25 @@ public class Ball : MonoBehaviour
         {
             if(_yDirection == 1)
             {
+                SoundManager.PlaySound(SoundManager.Sound.Wall);
                 _yDirection = -1;
                 moveAmount = new Vector3(moveAmount.x, moveAmount.y * _yDirection, 0);
+
             }
             else
             {
+                SoundManager.PlaySound(SoundManager.Sound.Wall);
                 _yDirection = 1;
                 moveAmount = new Vector3(moveAmount.x, moveAmount.y * -1, 0);
             }
+            gameManager.DestroySound();
             return true;
         }
         else
         {
             return false;
         }
+        
     }
 
     private void ChangeXDirection()
@@ -128,8 +129,10 @@ public class Ball : MonoBehaviour
 
         if(collision.tag == "Player" || collision.tag == "AI")
         {
+            SoundManager.PlaySound(SoundManager.Sound.Paddle);
             ChangeXDirection();
             Bounce(collision);
+            gameManager.DestroySound();
         }
     }
 
