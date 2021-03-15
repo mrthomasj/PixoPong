@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(sound);
         }
-        
     }
 
     private void CheckScore()
